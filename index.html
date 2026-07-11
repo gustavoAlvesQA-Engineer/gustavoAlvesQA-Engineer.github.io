@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marina Duarte — Engenheira de Software</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --paper: #EEF1EC;
+  --paper-2: #E5E9E3;
+  --line: #CBD3CD;
+  --line-strong: #A9B3AB;
+  --ink: #16232E;
+  --ink-soft: #55636C;
+  --amber: #C8862B;
+  --amber-bg: #F3E3C7;
+  --green: #3A7D5C;
+  --green-bg: #DCEBE2;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*{ box-sizing: border-box; margin:0; padding:0; }
+
+body{
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 31px, var(--line) 31px, var(--line) 32px),
+    repeating-linear-gradient(90deg, transparent, transparent 31px, var(--line) 31px, var(--line) 32px),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.wrap{
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 24px 80px;
+}
+
+/* ===== TITLE BLOCK (elemento de assinatura) ===== */
+.titleblock{
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  margin-top: 24px;
+}
+.tb-top{
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 28px 28px 20px;
+  border-bottom: 2px solid var(--ink);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.tb-name{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.tb-role{
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--amber);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.tb-meta{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-align: right;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+.tb-meta span{ color: var(--ink); font-weight: 600; }
+
+.tb-thesis{
+  padding: 24px 28px;
+  border-bottom: 2px solid var(--ink);
+  display:grid;
+  grid-template-columns: 90px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.tb-thesis-label{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-top: 4px;
+}
+.tb-thesis p{
+  font-size: 17px;
+  max-width: 60ch;
+}
+
+.tb-contact{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.tb-contact a{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 14px 20px;
+  border-right: 1px solid var(--line-strong);
+  text-decoration: none;
+  flex: 1;
+  min-width: 140px;
+  transition: background 0.15s;
+}
+.tb-contact a:last-child{ border-right: none; }
+.tb-contact a:hover{ background: var(--paper-2); }
+.tb-contact .label{ color: var(--ink-soft); display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:3px; }
+
+/* ===== SECTION HEADERS ===== */
+.section-head{
+  display:flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 64px 0 28px;
+}
+.section-head .tag{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 4px 8px;
+  letter-spacing: 0.06em;
+}
+.section-head h2{
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+}
+.section-head .rule{
+  flex:1;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* ===== PROJECT SPEC SHEETS ===== */
+.sheet{
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  margin-bottom: 32px;
+  position: relative;
+}
+.sheet-head{
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22px 24px 16px;
+  border-bottom: 1px dashed var(--line-strong);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.sheet-id{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+}
+.sheet-title{
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.sheet-stack{
+  display:flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 260px;
+}
+.chip{
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  border: 1px solid var(--line-strong);
+  padding: 3px 8px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.sheet-body{ padding: 24px; }
+
+/* diagrama problema -> decisão -> resultado */
+.flow{
+  display:grid;
+  grid-template-columns: 1fr 32px 1fr 32px 1fr;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 22px;
+}
+@media (max-width: 720px){
+  .flow{ grid-template-columns: 1fr; gap: 12px; }
+  .flow .arrow{ display:none; }
+}
+.node{
+  border: 1px solid var(--line-strong);
+  padding: 16px;
+  background: #fff;
+}
+.node .k{
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display:inline-block;
+  padding: 2px 6px;
+}
+.node.problema .k{ background: var(--line); color: var(--ink-soft); }
+.node.decisao .k{ background: var(--amber-bg); color: var(--amber); }
+.node.resultado .k{ background: var(--green-bg); color: var(--green); }
+.node p{ font-size: 14px; color: var(--ink); }
+.arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: var(--line-strong);
+  font-size: 20px;
+}
+
+.metrics{
+  display:flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line-strong);
+  margin-bottom: 18px;
+}
+.metric{
+  font-family: var(--font-mono);
+}
+.metric .from{ color: var(--ink-soft); font-size: 13px; text-decoration: line-through; text-decoration-color: var(--ink-soft); }
+.metric .to{ color: var(--green); font-size: 18px; font-weight: 600; }
+.metric .label{ display:block; font-size: 10px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+.sheet-links{
+  display:flex;
+  gap: 16px;
+}
+.sheet-links a{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+}
+.sheet-links a:hover{ color: var(--amber); border-color: var(--amber); }
+
+/* ===== STACK / SKILLS COMO CAMADAS ===== */
+.stack-layers{
+  border: 1px solid var(--line-strong);
+}
+.layer{
+  display:grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.layer:last-child{ border-bottom: none; }
+.layer-label{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 16px;
+  border-right: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.layer-items{
+  padding: 14px 16px;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items:center;
+}
+@media (max-width: 600px){
+  .layer{ grid-template-columns: 1fr; }
+  .layer-label{ border-right:none; border-bottom:1px solid var(--line); }
+}
+
+/* ===== FOOTER / ASSINATURA ===== */
+.footer{
+  margin-top: 64px;
+  border-top: 2px solid var(--ink);
+  padding-top: 24px;
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TITLE BLOCK -->
+  <div class="titleblock">
+    <div class="tb-top">
+      <div>
+        <div class="tb-name">Marina Duarte</div>
+        <div class="tb-role">Engenheira de Software — Backend &amp; Sistemas Distribuídos</div>
+      </div>
+      <div class="tb-meta">
+        SHEET <span>01/01</span><br>
+        REV <span>2026.07</span><br>
+        LOCAL <span>São Paulo, BR</span>
+      </div>
+    </div>
+    <div class="tb-thesis">
+      <div class="tb-thesis-label">Abordagem</div>
+      <p>Gosto de sistemas que precisam continuar funcionando sob pressão. Meu trabalho normalmente começa identificando onde a arquitetura atual quebra sob carga real — e termina com números que provam que parou de quebrar.</p>
+    </div>
+    <div class="tb-contact">
+      <a href="#"><span class="label">Email</span>marina@email.dev</a>
+      <a href="#"><span class="label">GitHub</span>github.com/mduarte</a>
+      <a href="#"><span class="label">LinkedIn</span>in/marinaduarte</a>
+      <a href="#"><span class="label">PDF</span>baixar currículo</a>
+    </div>
+  </div>
+
+  <!-- PROJETOS -->
+  <div class="section-head">
+    <span class="tag">§1</span>
+    <h2>Projetos selecionados</h2>
+    <div class="rule"></div>
+  </div>
+
+  <!-- Projeto 1 -->
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <div class="sheet-id">PROJ-01 · SISTEMA DE PEDIDOS</div>
+        <div class="sheet-title">Fila assíncrona para checkout de alto tráfego</div>
+      </div>
+      <div class="sheet-stack">
+        <span class="chip">Node.js</span>
+        <span class="chip">RabbitMQ</span>
+        <span class="chip">Postgres</span>
+        <span class="chip">Redis</span>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div class="flow">
+        <div class="node problema">
+          <span class="k">Problema</span>
+          <p>Checkout síncrono travava sob picos de Black Friday, gerando timeout em cascata.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="node decisao">
+          <span class="k">Decisão</span>
+          <p>Desacoplei o processamento com filas (RabbitMQ) e idempotência via chave de deduplicação.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="node resultado">
+          <span class="k">Resultado</span>
+          <p>Sistema absorveu picos sem downtime, com fila atuando como buffer de segurança.</p>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><span class="from">3.000ms</span> → <span class="to">200ms</span><span class="label">Latência p95</span></div>
+        <div class="metric"><span class="to">10x</span><span class="label">Tráfego suportado</span></div>
+        <div class="metric"><span class="to">99.98%</span><span class="label">Uptime no pico</span></div>
+      </div>
+      <div class="sheet-links">
+        <a href="#">Ver código →</a>
+        <a href="#">Ler case completo →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projeto 2 -->
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <div class="sheet-id">PROJ-02 · PLATAFORMA INTERNA</div>
+        <div class="sheet-title">Migração de monólito para serviços isolados</div>
+      </div>
+      <div class="sheet-stack">
+        <span class="chip">Go</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Kubernetes</span>
+        <span class="chip">gRPC</span>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div class="flow">
+        <div class="node problema">
+          <span class="k">Problema</span>
+          <p>Deploy de qualquer feature exigia subir o monólito inteiro, travando 6 times simultaneamente.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="node decisao">
+          <span class="k">Decisão</span>
+          <p>Extraí 4 domínios críticos em serviços independentes, comunicando via gRPC com contrato versionado.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="node resultado">
+          <span class="k">Resultado</span>
+          <p>Times passaram a deployar de forma independente, sem coordenação central.</p>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><span class="from">1x/semana</span> → <span class="to">40x/semana</span><span class="label">Frequência de deploy</span></div>
+        <div class="metric"><span class="from">45min</span> → <span class="to">4min</span><span class="label">Tempo de build</span></div>
+      </div>
+      <div class="sheet-links">
+        <a href="#">Ver código →</a>
+        <a href="#">Ler case completo →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projeto 3 -->
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <div class="sheet-id">PROJ-03 · PROJETO PESSOAL</div>
+        <div class="sheet-title">Pipeline de dados open-source para monitoramento climático</div>
+      </div>
+      <div class="sheet-stack">
+        <span class="chip">Python</span>
+        <span class="chip">Airflow</span>
+        <span class="chip">ClickHouse</span>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div class="flow">
+        <div class="node problema">
+          <span class="k">Problema</span>
+          <p>Dados públicos de estações climáticas chegavam em formatos inconsistentes e sem histórico consultável.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="node decisao">
+          <span class="k">Decisão</span>
+          <p>Construí pipeline ETL com validação de schema e armazenamento colunar para consultas rápidas.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="node resultado">
+          <span class="k">Resultado</span>
+          <p>Usado por 3 pesquisadores universitários para análises de séries temporais.</p>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><span class="to">2.4M</span><span class="label">Registros processados/dia</span></div>
+        <div class="metric"><span class="to">120★</span><span class="label">GitHub stars</span></div>
+      </div>
+      <div class="sheet-links">
+        <a href="#">Ver código →</a>
+        <a href="#">Ler case completo →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="section-head">
+    <span class="tag">§2</span>
+    <h2>Stack por camada</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="stack-layers">
+    <div class="layer">
+      <div class="layer-label">Linguagens</div>
+      <div class="layer-items">
+        <span class="chip">TypeScript</span>
+        <span class="chip">Go</span>
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-label">Infra / Deploy</div>
+      <div class="layer-items">
+        <span class="chip">Kubernetes</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Terraform</span>
+        <span class="chip">AWS</span>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-label">Dados</div>
+      <div class="layer-items">
+        <span class="chip">Postgres</span>
+        <span class="chip">Redis</span>
+        <span class="chip">ClickHouse</span>
+        <span class="chip">Kafka</span>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-label">Observabilidade</div>
+      <div class="layer-items">
+        <span class="chip">Grafana</span>
+        <span class="chip">Prometheus</span>
+        <span class="chip">OpenTelemetry</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>MARINA DUARTE — ENGENHARIA DE SOFTWARE</div>
+    <div>ATUALIZADO EM JULHO/2026</div>
+  </div>
+
+</div>
+</body>
+</html>
