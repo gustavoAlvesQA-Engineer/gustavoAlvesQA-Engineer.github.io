@@ -5,522 +5,548 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gustavo Alves — Engenheiro de Software</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root{
-  --paper: #EEF1EC;
-  --paper-2: #E5E9E3;
-  --line: #CBD3CD;
-  --line-strong: #A9B3AB;
-  --ink: #16232E;
-  --ink-soft: #55636C;
-  --amber: #C8862B;
-  --amber-bg: #F3E3C7;
-  --green: #3A7D5C;
-  --green-bg: #DCEBE2;
-  --font-display: 'Space Grotesk', sans-serif;
+  --bg: #FBF7F1;
+  --bg-2: #F3ECE1;
+  --panel: #FFFFFF;
+  --line: #E6DCCC;
+  --text: #1C2B3A;
+  --text-soft: #64707C;
+  --accent: #EC7000;
+  --accent-soft: rgba(236,112,0,0.10);
+  --warn: #0B3C74;
+  --success: #2E7D5B;
+  --font-display: 'Sora', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-*{ box-sizing: border-box; margin:0; padding:0; }
-
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior: smooth; }
 body{
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 31px, var(--line) 31px, var(--line) 32px),
-    repeating-linear-gradient(90deg, transparent, transparent 31px, var(--line) 31px, var(--line) 32px),
-    var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+a{ color: inherit; text-decoration: none; }
 
-a { color: inherit; }
+.layout{
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 900px){
+  .layout{ grid-template-columns: 1fr; }
+  .sidebar{ position: relative; height:auto; border-right:none; border-bottom:1px solid var(--line); }
+}
 
-.wrap{
-  max-width: 960px;
+/* ===== SIDEBAR NAV ===== */
+.sidebar{
+  position: sticky;
+  top:0;
+  height:100vh;
+  border-right:1px solid var(--line);
+  padding: 40px 32px;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+}
+.brand{
+  font-family: var(--font-display);
+  font-weight:800;
+  font-size:22px;
+  letter-spacing:-0.02em;
+}
+.brand span{ color: var(--accent); }
+.nav-list{ margin-top:56px; display:flex; flex-direction:column; gap:4px; }
+.nav-list a{
+  font-family: var(--font-mono);
+  font-size:13px;
+  color: var(--text-soft);
+  padding:10px 12px;
+  border-radius:6px;
+  display:flex;
+  gap:10px;
+  transition: all 0.15s;
+}
+.nav-list a:hover{ color: var(--text); background: var(--panel); }
+.nav-list a .n{ color: var(--accent); }
+
+.status{
+  font-family: var(--font-mono);
+  font-size:11px;
+  color: var(--text-soft);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.status .dot{
+  width:8px; height:8px; border-radius:50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* ===== MAIN ===== */
+main{ padding: 0 0 120px; }
+.section{
+  max-width: 760px;
   margin: 0 auto;
-  padding: 24px 24px 80px;
+  padding: 100px 40px 0;
 }
-
-/* ===== TITLE BLOCK (elemento de assinatura) ===== */
-.titleblock{
-  border: 2px solid var(--ink);
-  background: var(--paper);
-  margin-top: 24px;
-}
-.tb-top{
-  display:flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 28px 28px 20px;
-  border-bottom: 2px solid var(--ink);
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.tb-name{
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(32px, 5vw, 52px);
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-}
-.tb-role{
+.eyebrow{
   font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--amber);
-  letter-spacing: 0.06em;
+  font-size:12px;
+  color: var(--accent);
+  letter-spacing:0.08em;
   text-transform: uppercase;
-  margin-top: 8px;
+  margin-bottom:14px;
 }
-.tb-meta{
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-soft);
-  text-align: right;
-  line-height: 1.8;
-  white-space: nowrap;
-}
-.tb-meta span{ color: var(--ink); font-weight: 600; }
+h1,h2{ font-family: var(--font-display); }
 
-.tb-thesis{
-  padding: 24px 28px;
-  border-bottom: 2px solid var(--ink);
-  display:grid;
-  grid-template-columns: 90px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-.tb-thesis-label{
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding-top: 4px;
-}
-.tb-thesis p{
-  font-size: 17px;
-  max-width: 60ch;
-}
-
-.tb-contact{
+/* HERO */
+.hero{
+  min-height: 92vh;
   display:flex;
-  flex-wrap: wrap;
-  gap: 0;
-}
-.tb-contact a{
-  font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 14px 20px;
-  border-right: 1px solid var(--line-strong);
-  text-decoration: none;
-  flex: 1;
-  min-width: 140px;
-  transition: background 0.15s;
-}
-.tb-contact a:last-child{ border-right: none; }
-.tb-contact a:hover{ background: var(--paper-2); }
-.tb-contact .label{ color: var(--ink-soft); display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:3px; }
-
-/* ===== SECTION HEADERS ===== */
-.section-head{
-  display:flex;
-  align-items: baseline;
-  gap: 14px;
-  margin: 64px 0 28px;
-}
-.section-head .tag{
-  font-family: var(--font-mono);
-  font-size: 11px;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 4px 8px;
-  letter-spacing: 0.06em;
-}
-.section-head h2{
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 600;
-}
-.section-head .rule{
-  flex:1;
-  height: 1px;
-  background: var(--line-strong);
-}
-
-/* ===== PROJECT SPEC SHEETS ===== */
-.sheet{
-  border: 1px solid var(--line-strong);
-  background: var(--paper);
-  margin-bottom: 32px;
-  position: relative;
-}
-.sheet-head{
-  display:flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 22px 24px 16px;
-  border-bottom: 1px dashed var(--line-strong);
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.sheet-id{
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-soft);
-  letter-spacing: 0.06em;
-}
-.sheet-title{
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  margin-top: 4px;
-}
-.sheet-stack{
-  display:flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  max-width: 260px;
-}
-.chip{
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  border: 1px solid var(--line-strong);
-  padding: 3px 8px;
-  color: var(--ink-soft);
-  white-space: nowrap;
-}
-
-.sheet-body{ padding: 24px; }
-
-/* diagrama problema -> decisão -> resultado */
-.flow{
-  display:grid;
-  grid-template-columns: 1fr 32px 1fr 32px 1fr;
-  align-items: stretch;
-  gap: 0;
-  margin-bottom: 22px;
-}
-@media (max-width: 720px){
-  .flow{ grid-template-columns: 1fr; gap: 12px; }
-  .flow .arrow{ display:none; }
-}
-.node{
-  border: 1px solid var(--line-strong);
-  padding: 16px;
-  background: #fff;
-}
-.node .k{
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  display:inline-block;
-  padding: 2px 6px;
-}
-.node.problema .k{ background: var(--line); color: var(--ink-soft); }
-.node.decisao .k{ background: var(--amber-bg); color: var(--amber); }
-.node.resultado .k{ background: var(--green-bg); color: var(--green); }
-.node p{ font-size: 14px; color: var(--ink); }
-.arrow{
-  display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
-  color: var(--line-strong);
-  font-size: 20px;
+  max-width:760px;
+  margin:0 auto;
+  padding: 40px;
 }
-
-.metrics{
-  display:flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  padding-top: 18px;
-  border-top: 1px dashed var(--line-strong);
-  margin-bottom: 18px;
+.hero .greeting{ font-family: var(--font-mono); color: var(--accent); font-size:15px; margin-bottom:18px; }
+.hero h1{
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  line-height:1.08;
+  color: var(--text);
 }
-.metric{
-  font-family: var(--font-mono);
+.hero .role{
+  font-size: clamp(18px,3vw,26px);
+  color: var(--text-soft);
+  font-weight:600;
+  margin-top:10px;
 }
-.metric .from{ color: var(--ink-soft); font-size: 13px; text-decoration: line-through; text-decoration-color: var(--ink-soft); }
-.metric .to{ color: var(--green); font-size: 18px; font-weight: 600; }
-.metric .label{ display:block; font-size: 10px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
-
-.sheet-links{
-  display:flex;
-  gap: 16px;
+.hero p.lede{
+  margin-top:24px;
+  max-width: 54ch;
+  color: var(--text-soft);
+  font-size:16px;
 }
-.sheet-links a{
-  font-family: var(--font-mono);
-  font-size: 12px;
-  text-decoration: none;
-  color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 1px;
-}
-.sheet-links a:hover{ color: var(--amber); border-color: var(--amber); }
-
-/* ===== STACK / SKILLS COMO CAMADAS ===== */
-.stack-layers{
-  border: 1px solid var(--line-strong);
-}
-.layer{
-  display:grid;
-  grid-template-columns: 160px 1fr;
-  border-bottom: 1px solid var(--line);
-}
-.layer:last-child{ border-bottom: none; }
-.layer-label{
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 16px;
-  border-right: 1px solid var(--line);
-  background: var(--paper-2);
-}
-.layer-items{
-  padding: 14px 16px;
-  display:flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.hero .cta{
+  margin-top:36px;
+  display:inline-flex;
+  width:fit-content;
   align-items:center;
-}
-@media (max-width: 600px){
-  .layer{ grid-template-columns: 1fr; }
-  .layer-label{ border-right:none; border-bottom:1px solid var(--line); }
-}
-
-/* ===== FOOTER / ASSINATURA ===== */
-.footer{
-  margin-top: 64px;
-  border-top: 2px solid var(--ink);
-  padding-top: 24px;
-  display:flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+  gap:8px;
   font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-soft);
+  font-size:13px;
+  color: var(--accent);
+  border:1px solid var(--accent);
+  padding:12px 22px;
+  border-radius:6px;
+  transition: all 0.2s;
+}
+.hero .cta:hover{ background: var(--accent-soft); }
+
+/* TERMINAL WIDGET (signature element) */
+.termcard{
+  margin-top:48px;
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  max-width: 460px;
+}
+.termcard .bar{
+  display:flex; gap:6px;
+  padding:10px 14px;
+  border-bottom:1px solid var(--line);
+}
+.termcard .bar span{ width:10px; height:10px; border-radius:50%; background: var(--line); }
+.termcard .body{ padding:16px 18px; font-family: var(--font-mono); font-size:12.5px; }
+.termcard .body .ok{ color: var(--success); }
+.termcard .body .muted{ color: var(--text-soft); }
+.termcard .body div{ margin-bottom:6px; }
+
+/* SECTION HEAD */
+.section h2{
+  font-size:28px;
+  font-weight:700;
+  margin-bottom: 36px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.section h2 .num{ color: var(--accent); font-family: var(--font-mono); font-size:16px; font-weight:400; }
+
+/* SOBRE */
+.about-grid{ display:grid; grid-template-columns: 1fr; gap:20px; color: var(--text-soft); font-size:16px; }
+.about-grid strong{ color: var(--text); }
+
+/* EXPERIÊNCIA */
+.timeline{ display:flex; flex-direction:column; }
+.timeline-item{
+  display:grid;
+  grid-template-columns: 130px 1fr;
+  gap:24px;
+  padding: 24px 0;
+  border-bottom:1px solid var(--line);
+}
+.timeline-item:last-child{ border-bottom:none; }
+.timeline-item .when{
+  font-family: var(--font-mono);
+  font-size:12.5px;
+  color: var(--text-soft);
+}
+.timeline-item h3{ font-family: var(--font-display); font-size:17px; margin-bottom:4px; }
+.timeline-item .org{ color: var(--accent); font-size:13.5px; margin-bottom:10px; font-weight:600; }
+.timeline-item p{ color: var(--text-soft); font-size:14.5px; }
+
+/* PROJETOS — mantém formato problema/decisão/resultado */
+.project{
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:28px;
+  margin-bottom:24px;
+}
+.project-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.project-head h3{ font-family: var(--font-display); font-size:19px; }
+.project-tags{ display:flex; gap:6px; flex-wrap:wrap; }
+.tag{
+  font-family: var(--font-mono);
+  font-size:10.5px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding:3px 9px;
+  border-radius:20px;
+}
+.pdr{ display:flex; flex-direction:column; gap:12px; margin-bottom:18px; }
+.pdr .row{ display:grid; grid-template-columns: 90px 1fr; gap:14px; font-size:14px; }
+.pdr .row .k{ font-family: var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em; padding-top:2px; }
+.pdr .row.problema .k{ color: var(--text-soft); }
+.pdr .row.decisao .k{ color: var(--warn); }
+.pdr .row.resultado .k{ color: var(--accent); }
+.pdr .row p{ color: var(--text-soft); }
+.project-metrics{ display:flex; gap:24px; flex-wrap:wrap; padding-top:14px; border-top:1px solid var(--line); }
+.project-metrics .m{ font-family: var(--font-mono); }
+.project-metrics .m b{ color: var(--accent); font-size:17px; }
+.project-metrics .m span{ display:block; font-size:10px; color: var(--text-soft); text-transform:uppercase; margin-top:3px; }
+.project-links{ margin-top:16px; display:flex; gap:18px; }
+.project-links a{ font-family: var(--font-mono); font-size:12.5px; color: var(--text); border-bottom:1px solid var(--text-soft); }
+.project-links a:hover{ color: var(--accent); border-color: var(--accent); }
+
+/* SKILLS */
+.skills-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+@media (max-width:600px){ .skills-grid{ grid-template-columns:1fr; } }
+.skill-card{ background: var(--panel); border:1px solid var(--line); border-radius:10px; padding:20px; }
+.skill-card h4{ font-family: var(--font-mono); font-size:12px; color: var(--accent); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; }
+.skill-card .items{ display:flex; flex-wrap:wrap; gap:8px; }
+
+/* CONTATO */
+.contact-box{
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:40px;
+  text-align:center;
+}
+.contact-box p{ color: var(--text-soft); max-width:50ch; margin: 12px auto 28px; }
+.contact-links{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+.contact-links a{
+  font-family: var(--font-mono);
+  font-size:13px;
+  border:1px solid var(--line);
+  padding:10px 18px;
+  border-radius:8px;
+  transition: all 0.15s;
+}
+.contact-links a:hover{ border-color: var(--accent); color: var(--accent); }
+
+footer{
+  text-align:center;
+  font-family: var(--font-mono);
+  font-size:11px;
+  color: var(--text-soft);
+  margin-top:100px;
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="layout">
 
-  <!-- TITLE BLOCK -->
-  <div class="titleblock">
-    <div class="tb-top">
-      <div>
-        <div class="tb-name">Marina Duarte</div>
-        <div class="tb-role">Engenheira de Software — Backend &amp; Sistemas Distribuídos</div>
-      </div>
-      <div class="tb-meta">
-        SHEET <span>01/01</span><br>
-        REV <span>2026.07</span><br>
-        LOCAL <span>São Paulo, BR</span>
-      </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">GA<span>.</span></div>
+      <nav class="nav-list">
+        <a href="#inicio"><span class="n">01</span> Início</a>
+        <a href="#sobre"><span class="n">02</span> Sobre</a>
+        <a href="#abordagem"><span class="n">03</span> Abordagem</a>
+        <a href="#experiencia"><span class="n">04</span> Experiência</a>
+        <a href="#projetos"><span class="n">05</span> Projetos</a>
+        <a href="#skills"><span class="n">06</span> Skills</a>
+        <a href="#contato"><span class="n">07</span> Contato</a>
+      </nav>
     </div>
-    <div class="tb-thesis">
-      <div class="tb-thesis-label">Abordagem</div>
-      <p>Gosto de sistemas que precisam continuar funcionando sob pressão. Meu trabalho normalmente começa identificando onde a arquitetura atual quebra sob carga real — e termina com números que provam que parou de quebrar.</p>
-    </div>
-    <div class="tb-contact">
-      <a href="#"><span class="label">Email</span>marina@email.dev</a>
-      <a href="#"><span class="label">GitHub</span>github.com/mduarte</a>
-      <a href="#"><span class="label">LinkedIn</span>in/marinaduarte</a>
-      <a href="#"><span class="label">PDF</span>baixar currículo</a>
-    </div>
-  </div>
+    <div class="status"><span class="dot"></span> Disponível para novos projetos</div>
+  </aside>
 
-  <!-- PROJETOS -->
-  <div class="section-head">
-    <span class="tag">§1</span>
-    <h2>Projetos selecionados</h2>
-    <div class="rule"></div>
-  </div>
+  <main>
 
-  <!-- Projeto 1 -->
-  <div class="sheet">
-    <div class="sheet-head">
-      <div>
-        <div class="sheet-id">PROJ-01 · SISTEMA DE PEDIDOS</div>
-        <div class="sheet-title">Fila assíncrona para checkout de alto tráfego</div>
-      </div>
-      <div class="sheet-stack">
-        <span class="chip">Node.js</span>
-        <span class="chip">RabbitMQ</span>
-        <span class="chip">Postgres</span>
-        <span class="chip">Redis</span>
-      </div>
-    </div>
-    <div class="sheet-body">
-      <div class="flow">
-        <div class="node problema">
-          <span class="k">Problema</span>
-          <p>Checkout síncrono travava sob picos de Black Friday, gerando timeout em cascata.</p>
-        </div>
-        <div class="arrow">→</div>
-        <div class="node decisao">
-          <span class="k">Decisão</span>
-          <p>Desacoplei o processamento com filas (RabbitMQ) e idempotência via chave de deduplicação.</p>
-        </div>
-        <div class="arrow">→</div>
-        <div class="node resultado">
-          <span class="k">Resultado</span>
-          <p>Sistema absorveu picos sem downtime, com fila atuando como buffer de segurança.</p>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="greeting">Olá, meu nome é</div>
+      <h1>Gustavo Alves.</h1>
+      <div class="role">QA Engineer & Especialista em Automação de Testes</div>
+      <p class="lede">Testo sistemas de ponta a ponta — Web, API, Mobile e infraestrutura — para que decisões de negócio não dependam de sorte. Hoje atuo no Itaú, com passagens por Claro, Bradesco e Vidi ao longo da carreira.</p>
+      <a href="#projetos" class="cta">Ver projetos →</a>
+
+      <div class="termcard">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="body">
+          <div class="muted">$ npm run test:suite</div>
+          <div><span class="ok">✓</span> checkout.spec.ts <span class="muted">(1.2s)</span></div>
+          <div><span class="ok">✓</span> auth.spec.ts <span class="muted">(0.8s)</span></div>
+          <div><span class="ok">✓</span> pipeline.spec.ts <span class="muted">(2.1s)</span></div>
+          <div class="muted">3 passed, 0 failed</div>
         </div>
       </div>
-      <div class="metrics">
-        <div class="metric"><span class="from">3.000ms</span> → <span class="to">200ms</span><span class="label">Latência p95</span></div>
-        <div class="metric"><span class="to">10x</span><span class="label">Tráfego suportado</span></div>
-        <div class="metric"><span class="to">99.98%</span><span class="label">Uptime no pico</span></div>
-      </div>
-      <div class="sheet-links">
-        <a href="#">Ver código →</a>
-        <a href="#">Ler case completo →</a>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Projeto 2 -->
-  <div class="sheet">
-    <div class="sheet-head">
-      <div>
-        <div class="sheet-id">PROJ-02 · PLATAFORMA INTERNA</div>
-        <div class="sheet-title">Migração de monólito para serviços isolados</div>
+    <!-- SOBRE -->
+    <section id="sobre" class="section">
+      <h2><span class="num">02.</span> Sobre mim</h2>
+      <div class="about-grid">
+        <p><strong>QA há mais de 5 anos</strong>, formado em Análise e Desenvolvimento de Sistemas (Anhembi Morumbi, 2024) e em Administração de Empresas (USJT, 2019). Hoje, aos 28 anos, atuo no Itaú — depois de passagens pela Global Hitss e pela Vidi, testando sistemas de instituições como Claro e Bradesco.</p>
+        <p>Minha atuação vai além da automação de interface: cubro testes funcionais e não funcionais, performance (JMeter, eventos Kafka producer/consumer), infraestrutura (Terraform, Docker, AWS) e monitoramento (New Relic, DataDog, APDEX) — sempre com o objetivo de antecipar falhas antes que cheguem ao usuário.</p>
       </div>
-      <div class="sheet-stack">
-        <span class="chip">Go</span>
-        <span class="chip">Docker</span>
-        <span class="chip">Kubernetes</span>
-        <span class="chip">gRPC</span>
-      </div>
-    </div>
-    <div class="sheet-body">
-      <div class="flow">
-        <div class="node problema">
-          <span class="k">Problema</span>
-          <p>Deploy de qualquer feature exigia subir o monólito inteiro, travando 6 times simultaneamente.</p>
+    </section>
+
+    <!-- ABORDAGEM -->
+    <section id="abordagem" class="section">
+      <h2><span class="num">03.</span> Minha abordagem</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Qualidade em todas as camadas</h4>
+          <p style="color:var(--text-soft); font-size:14px; margin-top:6px;">Testo Front-end, API, Mobile, banco de dados e infraestrutura como parte do mesmo ciclo — não só a interface. Test Pyramid e Shift Left guiam onde e quando testar.</p>
         </div>
-        <div class="arrow">→</div>
-        <div class="node decisao">
-          <span class="k">Decisão</span>
-          <p>Extraí 4 domínios críticos em serviços independentes, comunicando via gRPC com contrato versionado.</p>
-        </div>
-        <div class="arrow">→</div>
-        <div class="node resultado">
-          <span class="k">Resultado</span>
-          <p>Times passaram a deployar de forma independente, sem coordenação central.</p>
+        <div class="skill-card">
+          <h4>Curiosidade como motor</h4>
+          <p style="color:var(--text-soft); font-size:14px; margin-top:6px;">Learning never hurts — aprendo continuamente novas ferramentas (IA, LLMs, agentes de IA, cloud) para tornar a qualidade de software mais rápida e confiável.</p>
         </div>
       </div>
-      <div class="metrics">
-        <div class="metric"><span class="from">1x/semana</span> → <span class="to">40x/semana</span><span class="label">Frequência de deploy</span></div>
-        <div class="metric"><span class="from">45min</span> → <span class="to">4min</span><span class="label">Tempo de build</span></div>
-      </div>
-      <div class="sheet-links">
-        <a href="#">Ver código →</a>
-        <a href="#">Ler case completo →</a>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Projeto 3 -->
-  <div class="sheet">
-    <div class="sheet-head">
-      <div>
-        <div class="sheet-id">PROJ-03 · PROJETO PESSOAL</div>
-        <div class="sheet-title">Pipeline de dados open-source para monitoramento climático</div>
-      </div>
-      <div class="sheet-stack">
-        <span class="chip">Python</span>
-        <span class="chip">Airflow</span>
-        <span class="chip">ClickHouse</span>
-      </div>
-    </div>
-    <div class="sheet-body">
-      <div class="flow">
-        <div class="node problema">
-          <span class="k">Problema</span>
-          <p>Dados públicos de estações climáticas chegavam em formatos inconsistentes e sem histórico consultável.</p>
+    <!-- EXPERIÊNCIA -->
+    <section id="experiencia" class="section">
+      <h2><span class="num">04.</span> Experiência</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="when">04/2025 — Presente</div>
+          <div>
+            <h3>Analista de Engenharia de TI Jr.</h3>
+            <div class="org">Itaú Unibanco</div>
+            <p>Testes funcionais e não funcionais, automação e monitoramento de qualidade em sistemas de grande escala.</p>
+          </div>
         </div>
-        <div class="arrow">→</div>
-        <div class="node decisao">
-          <span class="k">Decisão</span>
-          <p>Construí pipeline ETL com validação de schema e armazenamento colunar para consultas rápidas.</p>
+        <div class="timeline-item">
+          <div class="when">10/2023 — [mês/ano]</div>
+          <div>
+            <h3>Analista de QA (PJ)</h3>
+            <div class="org">Vidi</div>
+            <p>Qualidade de software ponta a ponta, com foco em automação de testes e melhoria contínua dos processos de teste.</p>
+          </div>
         </div>
-        <div class="arrow">→</div>
-        <div class="node resultado">
-          <span class="k">Resultado</span>
-          <p>Usado por 3 pesquisadores universitários para análises de séries temporais.</p>
+        <div class="timeline-item">
+          <div class="when">06/2020 — 10/2023</div>
+          <div>
+            <h3>Analista de QA (CLT)</h3>
+            <div class="org">Global Hitss</div>
+            <p>Automação de testes Web, API, Mobile e banco de dados para projetos de clientes como Claro e Bradesco, atuando em times ágeis (Scrum/BDD) e cascata.</p>
+          </div>
         </div>
       </div>
-      <div class="metrics">
-        <div class="metric"><span class="to">2.4M</span><span class="label">Registros processados/dia</span></div>
-        <div class="metric"><span class="to">120★</span><span class="label">GitHub stars</span></div>
-      </div>
-      <div class="sheet-links">
-        <a href="#">Ver código →</a>
-        <a href="#">Ler case completo →</a>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- STACK -->
-  <div class="section-head">
-    <span class="tag">§2</span>
-    <h2>Stack por camada</h2>
-    <div class="rule"></div>
-  </div>
+    <!-- PROJETOS -->
+    <section id="projetos" class="section">
+      <h2><span class="num">05.</span> Projetos selecionados</h2>
 
-  <div class="stack-layers">
-    <div class="layer">
-      <div class="layer-label">Linguagens</div>
-      <div class="layer-items">
-        <span class="chip">TypeScript</span>
-        <span class="chip">Go</span>
-        <span class="chip">Python</span>
-        <span class="chip">SQL</span>
+      <div class="project">
+        <div class="project-head">
+          <h3>Claro — Salesforce (via Global Hitss)</h3>
+          <div class="project-tags">
+            <span class="tag">Selenium</span>
+            <span class="tag">Rest Assured</span>
+            <span class="tag">Cucumber</span>
+          </div>
+        </div>
+        <div class="pdr">
+          <div class="row problema"><span class="k">Problema</span><p>[Qual era a dor real desse projeto — o que estava quebrando, lento ou sem cobertura de testes]</p></div>
+          <div class="row decisao"><span class="k">Decisão</span><p>[O que você decidiu automatizar/testar e por quê]</p></div>
+          <div class="row resultado"><span class="k">Resultado</span><p>[O que mudou depois — ideal com número]</p></div>
+        </div>
+        <div class="project-metrics">
+          <div class="m"><b>[ ]</b><span>[métrica]</span></div>
+        </div>
       </div>
-    </div>
-    <div class="layer">
-      <div class="layer-label">Infra / Deploy</div>
-      <div class="layer-items">
-        <span class="chip">Kubernetes</span>
-        <span class="chip">Docker</span>
-        <span class="chip">Terraform</span>
-        <span class="chip">AWS</span>
-      </div>
-    </div>
-    <div class="layer">
-      <div class="layer-label">Dados</div>
-      <div class="layer-items">
-        <span class="chip">Postgres</span>
-        <span class="chip">Redis</span>
-        <span class="chip">ClickHouse</span>
-        <span class="chip">Kafka</span>
-      </div>
-    </div>
-    <div class="layer">
-      <div class="layer-label">Observabilidade</div>
-      <div class="layer-items">
-        <span class="chip">Grafana</span>
-        <span class="chip">Prometheus</span>
-        <span class="chip">OpenTelemetry</span>
-      </div>
-    </div>
-  </div>
 
-  <div class="footer">
-    <div>MARINA DUARTE — ENGENHARIA DE SOFTWARE</div>
-    <div>ATUALIZADO EM JULHO/2026</div>
-  </div>
+      <div class="project">
+        <div class="project-head">
+          <h3>Bradesco — Uras (via Global Hitss)</h3>
+          <div class="project-tags">
+            <span class="tag">Java</span>
+            <span class="tag">JUnit</span>
+            <span class="tag">API</span>
+          </div>
+        </div>
+        <div class="pdr">
+          <div class="row problema"><span class="k">Problema</span><p>[Descreva o problema real desse projeto]</p></div>
+          <div class="row decisao"><span class="k">Decisão</span><p>[Descreva a decisão técnica]</p></div>
+          <div class="row resultado"><span class="k">Resultado</span><p>[Descreva o resultado — ideal com número]</p></div>
+        </div>
+        <div class="project-metrics">
+          <div class="m"><b>[ ]</b><span>[métrica]</span></div>
+        </div>
+      </div>
+    </section>
 
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2><span class="num">06.</span> Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Linguagens</h4>
+          <div class="items">
+            <span class="tag">Java</span>
+            <span class="tag">Python</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>Automação Web / Mobile</h4>
+          <div class="items">
+            <span class="tag">Selenium WebDriver</span>
+            <span class="tag">Cypress</span>
+            <span class="tag">Appium</span>
+            <span class="tag">Robot Framework</span>
+            <span class="tag">XCUITest</span>
+            <span class="tag">WebDriver.IO</span>
+            <span class="tag">Katalon Studio</span>
+            <span class="tag">TestComplete</span>
+            <span class="tag">BrowserStack</span>
+            <span class="tag">LambdaTest</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>API & BDD</h4>
+          <div class="items">
+            <span class="tag">Rest Assured</span>
+            <span class="tag">Postman / Newman</span>
+            <span class="tag">Cucumber</span>
+            <span class="tag">SpecFlow</span>
+            <span class="tag">JUnit</span>
+            <span class="tag">NUnit</span>
+            <span class="tag">Serenity BDD</span>
+            <span class="tag">Behave / JBehave</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>Performance & Observabilidade</h4>
+          <div class="items">
+            <span class="tag">JMeter</span>
+            <span class="tag">Locust</span>
+            <span class="tag">Kafka (producer/consumer)</span>
+            <span class="tag">APDEX</span>
+            <span class="tag">New Relic</span>
+            <span class="tag">DataDog</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>Infra / Cloud</h4>
+          <div class="items">
+            <span class="tag">Docker</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Kafka</span>
+            <span class="tag">Nifi</span>
+            <span class="tag">AWS S3</span>
+            <span class="tag">AWS Athena</span>
+            <span class="tag">AWS Glue</span>
+            <span class="tag">AWS Lambda</span>
+            <span class="tag">AWS EMR</span>
+            <span class="tag">AWS SQS</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>CI/CD & Ferramentas</h4>
+          <div class="items">
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">GitLab CI/CD</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">Azure DevOps</span>
+            <span class="tag">Jira X-Ray</span>
+            <span class="tag">TestRail</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>Banco de Dados</h4>
+          <div class="items">
+            <span class="tag">Oracle</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">DynamoDB</span>
+            <span class="tag">CosmosDB</span>
+            <span class="tag">Redis</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>Metodologias & IA</h4>
+          <div class="items">
+            <span class="tag">Scrum / Kanban</span>
+            <span class="tag">BDD / Shift Left</span>
+            <span class="tag">Test Pyramid</span>
+            <span class="tag">DevOps / SRE</span>
+            <span class="tag">Cursor IA</span>
+            <span class="tag">Agentes de IA / LLM</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section">
+      <h2><span class="num">07.</span> Contato</h2>
+      <div class="contact-box">
+        <h3 style="font-family:var(--font-display); font-size:22px;">Vamos conversar?</h3>
+        <p>Estou aberto a novas oportunidades — sinta-se à vontade para entrar em contato.</p>
+        <div class="contact-links">
+          <a href="mailto:guu3@outlook.com">📧 Email</a>
+          <a href="https://github.com/gustavoAlvesQA-Engineer">🐙 GitHub</a>
+          <a href="https://www.linkedin.com/in/gustavo-alves-5a24b8181/">🔗 LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>GUSTAVO ALVES © 2026 — Desenvolvido com HTML, CSS e café</footer>
+  </main>
 </div>
 </body>
 </html>
