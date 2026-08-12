@@ -91,7 +91,18 @@ a{ color: inherit; text-decoration: none; }
 }
 
 /* ===== MAIN ===== */
-main{ padding: 0 0 120px; }
+main{ padding: 0 0 120px; position: relative; }
+.hero-photo{
+  position: absolute;
+  top: 56px;
+  right: 56px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+@media (max-width: 1200px){ .hero-photo{ display: none; } }
 .section{
   max-width: 760px;
   margin: 0 auto;
@@ -296,15 +307,17 @@ footer{
         <a href="#sobre"><span class="n">02</span> Sobre</a>
         <a href="#abordagem"><span class="n">03</span> Abordagem</a>
         <a href="#experiencia"><span class="n">04</span> Experiência</a>
-        <a href="#projetos"><span class="n">05</span> Projetos</a>
-        <a href="#skills"><span class="n">06</span> Skills</a>
-        <a href="#contato"><span class="n">07</span> Contato</a>
+        <a href="#projetos"><span class="n">05</span> Produtos</a>
+        <a href="#projetos-anteriores"><span class="n">06</span> Projetos anteriores</a>
+        <a href="#skills"><span class="n">07</span> Skills</a>
+        <a href="#contato"><span class="n">08</span> Contato</a>
       </nav>
     </div>
     <div class="status"><span class="dot"></span> Disponível para novos projetos</div>
   </aside>
 
   <main>
+    <img class="hero-photo" src="assets/gustavo.jpg" alt="Foto de Gustavo Alves">
 
     <!-- HERO -->
     <section id="inicio" class="hero">
@@ -312,7 +325,7 @@ footer{
       <h1>Gustavo Alves.</h1>
       <div class="role">QA Engineer</div>
       <p class="lede">Implemento cultura de qualidade dentro de squads de tecnologia — da automação de testes regressivos e funcionais à disseminação da disciplina de testes na jornada de desenvolvimento. Hoje atuo no Itaú, na Comunidade de Custódia de Ativos PF.</p>
-      <a href="#projetos" class="cta">Ver projetos →</a>
+      <a href="#projetos" class="cta">Produtos de qualidade →</a>
 
       <div class="termcard">
         <div class="bar"><span></span><span></span><span></span></div>
@@ -377,50 +390,67 @@ footer{
 
     <!-- PROJETOS -->
     <section id="projetos" class="section">
-      <h2><span class="num">05.</span> Projetos selecionados</h2>
+      <h2><span class="num">05.</span> Produtos de qualidade</h2>
 
       <div class="project">
         <div class="project-head">
+          <h3>Pré-CAB</h3>
+        </div>
+        <p style="color:var(--text-soft); font-size:14.5px;">Realizo a mitigação de risco de mudança, com foco em qualidade de repositórios — validando testes de mutação, testes unitários, testes integrados e evidências de teste e plano de rollback antes da submissão ao CAB.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Farol</h3>
+        </div>
+        <p style="color:var(--text-soft); font-size:14.5px;">Monitoro e atualizo o Farol, suíte de testes regressivos que valida os serviços de pós-venda em ambiente de homologação.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Consultoria em testes de integração</h3>
+        </div>
+        <p style="color:var(--text-soft); font-size:14.5px;">Atuo como referência técnica para testes de integração através do TestStack, repositório que centraliza validações de serviços AWS, Redis, Kafka e API — orientando os desenvolvedores na construção e execução desses testes.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Pílula de Conhecimento</h3>
+        </div>
+        <p style="color:var(--text-soft); font-size:14.5px;">Disparo por e-mail, feito a cada sprint, que apresenta de forma leve e descontraída os produtos de qualidade do time.</p>
+      </div>
+    </section>
+
+    <!-- PROJETOS ANTERIORES -->
+    <section id="projetos-anteriores" class="section">
+      <h2><span class="num">06.</span> Projetos anteriores</h2>
+
+      <div class="project" style="text-align:center;">
+        <div class="project-head" style="justify-content:center; flex-direction:column; align-items:center; gap:10px; margin-bottom:0;">
           <h3>Claro — Salesforce (via Global Hitss)</h3>
-          <div class="project-tags">
+          <div class="project-tags" style="justify-content:center;">
             <span class="tag">Selenium</span>
             <span class="tag">Rest Assured</span>
             <span class="tag">Cucumber</span>
           </div>
         </div>
-        <div class="pdr">
-          <div class="row problema"><span class="k">Problema</span><p>[Qual era a dor real desse projeto — o que estava quebrando, lento ou sem cobertura de testes]</p></div>
-          <div class="row decisao"><span class="k">Decisão</span><p>[O que você decidiu automatizar/testar e por quê]</p></div>
-          <div class="row resultado"><span class="k">Resultado</span><p>[O que mudou depois — ideal com número]</p></div>
-        </div>
-        <div class="project-metrics">
-          <div class="m"><b>[ ]</b><span>[métrica]</span></div>
-        </div>
       </div>
 
-      <div class="project">
-        <div class="project-head">
+      <div class="project" style="text-align:center;">
+        <div class="project-head" style="justify-content:center; flex-direction:column; align-items:center; gap:10px; margin-bottom:0;">
           <h3>Bradesco — Uras (via Global Hitss)</h3>
-          <div class="project-tags">
+          <div class="project-tags" style="justify-content:center;">
             <span class="tag">Java</span>
             <span class="tag">JUnit</span>
             <span class="tag">API</span>
           </div>
-        </div>
-        <div class="pdr">
-          <div class="row problema"><span class="k">Problema</span><p>[Descreva o problema real desse projeto]</p></div>
-          <div class="row decisao"><span class="k">Decisão</span><p>[Descreva a decisão técnica]</p></div>
-          <div class="row resultado"><span class="k">Resultado</span><p>[Descreva o resultado — ideal com número]</p></div>
-        </div>
-        <div class="project-metrics">
-          <div class="m"><b>[ ]</b><span>[métrica]</span></div>
         </div>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills" class="section">
-      <h2><span class="num">06.</span> Skills</h2>
+      <h2><span class="num">07.</span> Skills</h2>
       <div class="skills-grid">
         <div class="skill-card">
           <h4>Linguagens</h4>
@@ -506,7 +536,7 @@ footer{
 
     <!-- CONTATO -->
     <section id="contato" class="section">
-      <h2><span class="num">07.</span> Contato</h2>
+      <h2><span class="num">08.</span> Contato</h2>
       <div class="contact-box">
         <h3 style="font-family:var(--font-display); font-size:22px;">Vamos conversar?</h3>
         <p>Estou aberto a novas oportunidades — sinta-se à vontade para entrar em contato.</p>
