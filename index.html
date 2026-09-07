@@ -34,47 +34,42 @@ body{
 }
 a{ color: inherit; text-decoration: none; }
 
-.layout{
-  display:grid;
-  grid-template-columns: 260px 1fr;
-  min-height: 100vh;
-}
-@media (max-width: 900px){
-  .layout{ grid-template-columns: 1fr; }
-  .sidebar{ position: relative; height:auto; border-right:none; border-bottom:1px solid var(--line); }
-}
-
-/* ===== SIDEBAR NAV ===== */
-.sidebar{
+/* ===== TOP NAV ===== */
+.topnav{
   position: sticky;
-  top:0;
-  height:100vh;
-  border-right:1px solid var(--line);
-  padding: 40px 32px;
-  display:flex;
-  flex-direction:column;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 24px;
+  padding: 18px 40px;
 }
 .brand{
   font-family: var(--font-display);
   font-weight:800;
-  font-size:22px;
+  font-size:20px;
   letter-spacing:-0.02em;
+  flex: none;
 }
 .brand span{ color: var(--accent); }
-.nav-list{ margin-top:56px; display:flex; flex-direction:column; gap:4px; }
+.nav-list{ display:flex; align-items:center; gap:2px; flex-wrap:wrap; }
 .nav-list a{
   font-family: var(--font-mono);
-  font-size:13px;
+  font-size:12px;
   color: var(--text-soft);
-  padding:10px 12px;
+  padding:8px 10px;
   border-radius:6px;
   display:flex;
-  gap:10px;
+  gap:6px;
+  white-space: nowrap;
   transition: all 0.15s;
 }
 .nav-list a:hover{ color: var(--text); background: var(--panel); }
 .nav-list a .n{ color: var(--accent); }
+.nav-list a.active{ color: var(--text); background: var(--accent-soft); }
 
 .status{
   font-family: var(--font-mono);
@@ -83,6 +78,8 @@ a{ color: inherit; text-decoration: none; }
   display:flex;
   align-items:center;
   gap:8px;
+  flex: none;
+  white-space: nowrap;
 }
 .status .dot{
   width:8px; height:8px; border-radius:50%;
@@ -90,19 +87,44 @@ a{ color: inherit; text-decoration: none; }
   box-shadow: 0 0 8px var(--accent);
 }
 
+.nav-toggle{
+  display:none;
+  align-items:center;
+  gap:8px;
+  background:none;
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:8px 14px;
+  font-family: var(--font-mono);
+  font-size:12px;
+  color: var(--text);
+  cursor:pointer;
+}
+
+@media (max-width: 980px){
+  .topnav{ flex-wrap: wrap; position: relative; }
+  .status{ display:none; }
+  .nav-toggle{ display:inline-flex; }
+  .nav-list{
+    display:none;
+    width:100%;
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
+    position:absolute;
+    top:100%;
+    left:0; right:0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 24px 20px;
+  }
+  .nav-list.is-open{ display:flex; }
+  .nav-list a{ padding:12px 10px; }
+}
+
 /* ===== MAIN ===== */
 main{ padding: 0 0 120px; position: relative; }
-.hero-photo{
-  position: absolute;
-  top: 56px;
-  right: 56px;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border: 1px solid var(--line);
-  background: var(--panel);
-}
-@media (max-width: 1200px){ .hero-photo{ display: none; } }
+.hero, .section{ scroll-margin-top: 90px; }
 .section{
   max-width: 760px;
   margin: 0 auto;
@@ -120,36 +142,67 @@ h1,h2{ font-family: var(--font-display); }
 
 /* HERO */
 .hero{
+  position: relative;
+  overflow: hidden;
   min-height: 92vh;
+  background: var(--warn);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(620px circle at 82% 28%, rgba(236,112,0,0.28), transparent 62%);
+  pointer-events:none;
+}
+.hero-inner{
+  position: relative;
+  z-index: 1;
   display:flex;
-  flex-direction:column;
+  align-items:center;
   justify-content:center;
-  max-width:760px;
+  gap: 56px;
+  max-width:1080px;
+  width: 100%;
   margin:0 auto;
   padding: 40px;
+  min-height: 92vh;
 }
-.hero .greeting{ font-family: var(--font-mono); color: var(--accent); font-size:15px; margin-bottom:18px; }
+.hero-left{ flex: 1 1 auto; min-width:0; }
+.hero-right{ flex: none; }
+@media (max-width: 860px){
+  .hero-inner{ flex-direction: column; text-align:center; padding-top:64px; }
+  .hero-right{ order: -1; }
+  .hero .lede{ margin-left:auto; margin-right:auto; }
+  .cta-row{ justify-content:center; }
+}
+.cta-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:36px; }
+.hero .greeting{
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size:15px;
+  margin-bottom:18px;
+  text-shadow: 0 0 24px rgba(236,112,0,0.5);
+}
 .hero h1{
   font-size: clamp(36px, 6vw, 64px);
   font-weight:800;
   letter-spacing:-0.02em;
   line-height:1.08;
-  color: var(--text);
+  color: #FFFFFF;
 }
 .hero .role{
   font-size: clamp(18px,3vw,26px);
-  color: var(--text-soft);
+  color: rgba(255,255,255,0.72);
   font-weight:600;
   margin-top:10px;
 }
 .hero p.lede{
   margin-top:24px;
   max-width: 54ch;
-  color: var(--text-soft);
+  color: rgba(255,255,255,0.68);
   font-size:16px;
 }
 .hero .cta{
-  margin-top:36px;
   display:inline-flex;
   width:fit-content;
   align-items:center;
@@ -161,8 +214,42 @@ h1,h2{ font-family: var(--font-display); }
   padding:12px 22px;
   border-radius:6px;
   transition: all 0.2s;
+  box-shadow: 0 0 28px rgba(236,112,0,0.3);
 }
-.hero .cta:hover{ background: var(--accent-soft); }
+.hero .cta:hover{ background: rgba(236,112,0,0.15); box-shadow: 0 0 36px rgba(236,112,0,0.45); }
+.hero .cta-secondary{
+  color: rgba(255,255,255,0.85);
+  border:1px solid rgba(255,255,255,0.3);
+  box-shadow: none;
+}
+.hero .cta-secondary:hover{ background: rgba(255,255,255,0.08); box-shadow:none; }
+
+/* HERO PHOTO FRAME */
+.hero-frame{
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+@media (max-width: 500px){ .hero-frame{ width:200px; height:200px; } }
+.hero-frame img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  background: var(--panel);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+}
+.hero-frame .corner{
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 3px solid var(--accent);
+}
+.hero-frame .corner.tl{ top:-8px; left:-8px; border-right:none; border-bottom:none; border-radius: 8px 0 0 0; }
+.hero-frame .corner.tr{ top:-8px; right:-8px; border-left:none; border-bottom:none; border-radius: 0 8px 0 0; }
+.hero-frame .corner.bl{ bottom:-8px; left:-8px; border-right:none; border-top:none; border-radius: 0 0 0 8px; }
+.hero-frame .corner.br{ bottom:-8px; right:-8px; border-left:none; border-top:none; border-radius: 0 0 8px 0; }
 
 /* TERMINAL WIDGET (signature element) */
 .termcard{
@@ -172,6 +259,7 @@ h1,h2{ font-family: var(--font-display); }
   border-radius:10px;
   overflow:hidden;
   max-width: 460px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.3);
 }
 .termcard .bar{
   display:flex; gap:6px;
@@ -296,45 +384,61 @@ footer{
 </style>
 </head>
 <body>
-<div class="layout">
+<header class="topnav" id="topnav">
+  <a href="#inicio" class="brand">GA<span>.</span></a>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div>
-      <div class="brand">GA<span>.</span></div>
-      <nav class="nav-list">
-        <a href="#inicio"><span class="n">01</span> Início</a>
-        <a href="#sobre"><span class="n">02</span> Sobre</a>
-        <a href="#abordagem"><span class="n">03</span> Abordagem</a>
-        <a href="#experiencia"><span class="n">04</span> Experiência</a>
-        <a href="#projetos"><span class="n">05</span> Produtos</a>
-        <a href="#projetos-anteriores"><span class="n">06</span> Projetos anteriores</a>
-        <a href="#skills"><span class="n">07</span> Skills</a>
-        <a href="#contato"><span class="n">08</span> Contato</a>
-      </nav>
-    </div>
-    <div class="status"><span class="dot"></span> Disponível para novos projetos</div>
-  </aside>
+  <nav class="nav-list" id="navList">
+    <a href="#inicio"><span class="n">01</span> Início</a>
+    <a href="#sobre"><span class="n">02</span> Sobre</a>
+    <a href="#abordagem"><span class="n">03</span> Abordagem</a>
+    <a href="#experiencia"><span class="n">04</span> Experiência</a>
+    <a href="#projetos"><span class="n">05</span> Projetos</a>
+    <a href="#projetos-anteriores"><span class="n">06</span> Projetos anteriores</a>
+    <a href="#skills"><span class="n">07</span> Skills</a>
+    <a href="#certificacoes"><span class="n">08</span> Certificações</a>
+    <a href="#contato"><span class="n">09</span> Contato</a>
+  </nav>
+
+  <div class="status"><span class="dot"></span> Disponível para novos projetos</div>
+
+  <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navList">Menu</button>
+</header>
 
   <main>
-    <img class="hero-photo" src="assets/gustavo.jpg" alt="Foto de Gustavo Alves">
 
     <!-- HERO -->
     <section id="inicio" class="hero">
-      <div class="greeting">Olá, meu nome é</div>
-      <h1>Gustavo Alves.</h1>
-      <div class="role">QA Engineer</div>
-      <p class="lede">Implemento cultura de qualidade dentro de squads de tecnologia — da automação de testes regressivos e funcionais à disseminação da disciplina de testes na jornada de desenvolvimento. Hoje atuo no Itaú, na Comunidade de Custódia de Ativos PF.</p>
-      <a href="#projetos" class="cta">Produtos de qualidade →</a>
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="greeting">Olá, meu nome é</div>
+          <h1>Gustavo Alves.</h1>
+          <div class="role">QA Engineer</div>
+          <p class="lede">Implemento cultura de qualidade dentro de squads de tecnologia — da automação de testes regressivos e funcionais à disseminação da disciplina de testes na jornada de desenvolvimento. Hoje atuo no Itaú, na Comunidade de Custódia de Ativos PF.</p>
+          <div class="cta-row">
+            <a href="#projetos" class="cta">Meus projetos →</a>
+            <a href="#contato" class="cta cta-secondary">Fale comigo</a>
+          </div>
 
-      <div class="termcard">
-        <div class="bar"><span></span><span></span><span></span></div>
-        <div class="body">
-          <div class="muted">$ npm run test:suite</div>
-          <div><span class="ok">✓</span> checkout.spec.ts <span class="muted">(1.2s)</span></div>
-          <div><span class="ok">✓</span> auth.spec.ts <span class="muted">(0.8s)</span></div>
-          <div><span class="ok">✓</span> pipeline.spec.ts <span class="muted">(2.1s)</span></div>
-          <div class="muted">3 passed, 0 failed</div>
+          <div class="termcard">
+            <div class="bar"><span></span><span></span><span></span></div>
+            <div class="body">
+              <div class="muted">$ npm run test:suite</div>
+              <div><span class="ok">✓</span> checkout.spec.ts <span class="muted">(1.2s)</span></div>
+              <div><span class="ok">✓</span> auth.spec.ts <span class="muted">(0.8s)</span></div>
+              <div><span class="ok">✓</span> pipeline.spec.ts <span class="muted">(2.1s)</span></div>
+              <div class="muted">3 passed, 0 failed</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-frame">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <img src="assets/gustavo.jpg" alt="Foto de Gustavo Alves">
+          </div>
         </div>
       </div>
     </section>
@@ -534,9 +638,32 @@ footer{
       </div>
     </section>
 
+    <!-- CERTIFICAÇÕES -->
+    <section id="certificacoes" class="section">
+      <h2><span class="num">08.</span> Certificações</h2>
+      <div class="project" style="display:flex; gap:22px; align-items:center; flex-wrap:wrap;">
+        <img src="assets/certifications/aws-certified-cloud-practitioner.png" alt="Badge AWS Certified Cloud Practitioner" style="width:110px; height:110px; flex-shrink:0;">
+        <div>
+          <div class="org">Amazon Web Services (AWS)</div>
+          <h3 style="font-family:var(--font-display); font-size:18px; margin-bottom:8px;">AWS Certified Cloud Practitioner</h3>
+          <p style="color:var(--text-soft); font-size:14px;">Certificação oficial validando conhecimento em computação em nuvem, segurança e infraestrutura, servindo como base para a atuação diária com Athena, Glue e S3.</p>
+        </div>
+      </div>
+
+      <div class="project" style="display:flex; gap:22px; align-items:center; flex-wrap:wrap;">
+        <img src="assets/certifications/mentoria-testes-software.png" alt="Certificado Mentoria em Testes de Software" width="842" height="595" style="width:180px; height:auto; aspect-ratio:842/595; border:1px solid var(--line); border-radius:6px; flex-shrink:0;">
+        <div>
+          <div class="org">Júlio de Lima Consultoria</div>
+          <h3 style="font-family:var(--font-display); font-size:18px; margin-bottom:8px;">Mentoria em Testes de Software</h3>
+          <p style="color:var(--text-soft); font-size:14px;">Treinamento de 112 horas com aulas online, exercícios práticos e sessões de mentoria ao vivo — concluído em outubro de 2023.</p>
+          <p style="color:var(--text-soft); font-size:14px; margin-top:8px;">Ministrada por Júlio de Lima, instrutor certificado (CTFL, CTAL Test Manager, CTAL Test Automation Engineer) e professor de pós-graduação, com atuação em conferências internacionais como STAREast (EUA) e CLEI (Panamá).</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTATO -->
     <section id="contato" class="section">
-      <h2><span class="num">08.</span> Contato</h2>
+      <h2><span class="num">09.</span> Contato</h2>
       <div class="contact-box">
         <h3 style="font-family:var(--font-display); font-size:22px;">Vamos conversar?</h3>
         <p>Estou aberto a novas oportunidades — sinta-se à vontade para entrar em contato.</p>
@@ -550,6 +677,72 @@ footer{
 
     <footer>GUSTAVO ALVES © 2026 — Desenvolvido com HTML, CSS e café</footer>
   </main>
-</div>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+
+  if (navToggle && navList) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navList.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
+  const topnav = document.getElementById('topnav');
+  const navHeight = () => (topnav ? topnav.offsetHeight : 0);
+  const navLinks = Array.from(document.querySelectorAll('.nav-list a'));
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      const target = href && document.querySelector(href);
+
+      if (navList) {
+        navList.classList.remove('is-open');
+      }
+      if (navToggle) {
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const offset = target.getBoundingClientRect().top + window.scrollY - navHeight() - 16;
+
+      window.scrollTo({ top: offset, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      history.pushState(null, '', href);
+    });
+  });
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const setActiveLink = (id) => {
+    navLinks.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+    });
+  };
+
+  if ('IntersectionObserver' in window && sections.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible && visible.target.id) {
+          setActiveLink(visible.target.id);
+        }
+      },
+      { rootMargin: '-30% 0px -55% 0px', threshold: [0.1, 0.25, 0.5, 0.75] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+</script>
 </body>
 </html>
