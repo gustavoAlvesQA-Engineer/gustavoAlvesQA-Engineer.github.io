@@ -379,6 +379,49 @@ h1,h2{ font-family: var(--font-display); }
 .skill-card h4{ font-family: var(--font-mono); font-size:12px; color: var(--accent); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; }
 .skill-card .items{ display:flex; flex-wrap:wrap; gap:8px; }
 
+/* SKILLS — categoria com ícones (orb style) */
+.tools-category{ margin-bottom:40px; }
+.tools-category-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family: var(--font-mono);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color: var(--accent);
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:24px;
+  width:100%;
+}
+.tools-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap:24px 16px;
+}
+.tool-card{ display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; }
+.tool-orb{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background: radial-gradient(circle at 30% 22%, rgba(236,112,0,0.10), transparent 60%), var(--panel);
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.tool-icon{ font-size:24px; color: var(--text-soft); transition: transform 0.18s ease, color 0.18s ease; }
+.tool-name{ font-size:12.5px; color: var(--text-soft); }
+.tool-card:hover .tool-orb{
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(236,112,0,0.2);
+  transform: translateY(-3px);
+}
+.tool-card:hover .tool-icon{ color: var(--accent); transform: scale(0.94); }
+
 /* CONTATO */
 .contact-box{
   background: var(--panel);
@@ -420,6 +463,12 @@ footer{
   border-radius:14px;
   padding:32px 28px;
   text-align:center;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.projeto-card:hover{
+  border-color: var(--accent);
+  box-shadow: 0 10px 28px rgba(236,112,0,0.18);
+  transform: translateY(-4px);
 }
 .projeto-icon{
   width:56px;
@@ -432,6 +481,55 @@ footer{
   justify-content:center;
   font-size:20px;
   margin:0 auto 18px;
+  transition: transform 0.2s ease;
+}
+.projeto-card:hover .projeto-icon{ transform: scale(1.08); }
+
+/* CERTIFICAÇÕES — cards centralizados */
+.cert-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+@media (max-width:640px){ .cert-grid{ grid-template-columns:1fr; } }
+.cert-card{
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:32px 28px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cert-card:hover{
+  border-color: var(--accent);
+  box-shadow: 0 10px 28px rgba(236,112,0,0.18);
+  transform: translateY(-4px);
+}
+.cert-badge-wrap{ height:130px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; }
+.cert-badge-img{ max-width:130px; max-height:130px; object-fit:contain; }
+.cert-issuer{
+  font-family: var(--font-mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  color: var(--text-soft);
+  margin-bottom:8px;
+}
+.cert-title{
+  font-family: var(--font-display);
+  font-size:18px;
+  margin-bottom:12px;
+}
+.cert-desc{ color: var(--text-soft); font-size:14px; margin-bottom:20px; }
+.cert-pill{
+  font-family: var(--font-mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding:6px 16px;
+  border-radius:20px;
+  margin-top:auto;
 }
 .projeto-card h3{
   font-family: var(--font-display);
@@ -456,7 +554,7 @@ footer{
     <a href="#experiencia"><span class="n">04</span> Experiência</a>
     <a href="#projetos"><span class="n">05</span> Projetos</a>
     <a href="#projetos-anteriores"><span class="n">06</span> Projetos anteriores</a>
-    <a href="#skills"><span class="n">07</span> Skills</a>
+    <a href="#skills"><span class="n">07</span> Ferramentas</a>
     <a href="#certificacoes"><span class="n">08</span> Certificações</a>
     <a href="#contato"><span class="n">09</span> Contato</a>
   </nav>
@@ -629,86 +727,105 @@ footer{
 
     <!-- SKILLS -->
     <section id="skills" class="section">
-      <h2><span class="num">07.</span> Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h4>Linguagens</h4>
-          <div class="items">
-            <span class="tag">Java</span>
-            <span class="tag">Python</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">SQL</span>
+      <h2><span class="num">07.</span> Ferramentas & Tecnologias</h2>
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-code"></i> Linguagens</div>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-orb"><i class="fa-brands fa-java tool-icon"></i></div>
+            <span class="tool-name">Java</span>
+          </div>
+          <div class="tool-card">
+            <div class="tool-orb"><i class="fa-brands fa-python tool-icon"></i></div>
+            <span class="tool-name">Python</span>
+          </div>
+          <div class="tool-card">
+            <div class="tool-orb"><i class="fa-brands fa-square-js tool-icon"></i></div>
+            <span class="tool-name">JavaScript</span>
+          </div>
+          <div class="tool-card">
+            <div class="tool-orb"><i class="fa-solid fa-database tool-icon"></i></div>
+            <span class="tool-name">SQL</span>
           </div>
         </div>
-        <div class="skill-card">
-          <h4>Automação Web / Mobile</h4>
-          <div class="items">
-            <span class="tag">Selenium WebDriver</span>
-            <span class="tag">Cypress</span>
-            <span class="tag">Appium</span>
-            <span class="tag">Robot Framework</span>
-          </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-mobile-screen-button"></i> Automação Web / Mobile</div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-compass tool-icon"></i></div><span class="tool-name">Selenium WebDriver</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-bolt tool-icon"></i></div><span class="tool-name">Cypress</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-mobile-screen tool-icon"></i></div><span class="tool-name">Appium</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-robot tool-icon"></i></div><span class="tool-name">Robot Framework</span></div>
         </div>
-        <div class="skill-card">
-          <h4>API</h4>
-          <div class="items">
-            <span class="tag">Rest Assured</span>
-            <span class="tag">Postman</span>
-            <span class="tag">Cucumber</span>
-            <span class="tag">JUnit</span>
-            <span class="tag">Behave / JBehave</span>
-            <span class="tag">WireMock</span>
-          </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-plug"></i> API</div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-plug tool-icon"></i></div><span class="tool-name">Rest Assured</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-paper-plane tool-icon"></i></div><span class="tool-name">Postman</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-seedling tool-icon"></i></div><span class="tool-name">Cucumber</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-vial tool-icon"></i></div><span class="tool-name">JUnit</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-comments tool-icon"></i></div><span class="tool-name">Behave / JBehave</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-server tool-icon"></i></div><span class="tool-name">WireMock</span></div>
         </div>
-        <div class="skill-card">
-          <h4>Performance</h4>
-          <div class="items">
-            <span class="tag">JMeter</span>
-            <span class="tag">Kafka (producer/consumer)</span>
-            <span class="tag">DataDog</span>
-          </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-gauge-high"></i> Performance</div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-gauge-high tool-icon"></i></div><span class="tool-name">JMeter</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-stream tool-icon"></i></div><span class="tool-name">Kafka (producer/consumer)</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-chart-line tool-icon"></i></div><span class="tool-name">DataDog</span></div>
         </div>
-        <div class="skill-card">
-          <h4>Infra / Cloud</h4>
-          <div class="items">
-            <span class="tag">Docker</span>
-            <span class="tag">Terraform</span>
-            <span class="tag">Kafka</span>
-            <span class="tag">AWS (S3, Athena, Glue, Lambda, EMR, SQS)</span>
-          </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-cloud"></i> Infra / Cloud</div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-orb"><i class="fa-brands fa-docker tool-icon"></i></div><span class="tool-name">Docker</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-cubes tool-icon"></i></div><span class="tool-name">Terraform</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-stream tool-icon"></i></div><span class="tool-name">Kafka</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-brands fa-aws tool-icon"></i></div><span class="tool-name">AWS (S3, Athena, Glue, Lambda, EMR, SQS)</span></div>
         </div>
-        <div class="skill-card">
-          <h4>CI/CD & Ferramentas</h4>
-          <div class="items">
-            <span class="tag">Git / GitHub</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">Azure DevOps</span>
-            <span class="tag">SonarQube</span>
-            <span class="tag">Jacoco</span>
-            <span class="tag">Maven</span>
-          </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-code-branch"></i> CI/CD & Ferramentas</div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-orb"><i class="fa-brands fa-github tool-icon"></i></div><span class="tool-name">Git / GitHub</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-gears tool-icon"></i></div><span class="tool-name">GitHub Actions</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-brands fa-microsoft tool-icon"></i></div><span class="tool-name">Azure DevOps</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-magnifying-glass-chart tool-icon"></i></div><span class="tool-name">SonarQube</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-percent tool-icon"></i></div><span class="tool-name">Jacoco</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-feather tool-icon"></i></div><span class="tool-name">Maven</span></div>
         </div>
-        <div class="skill-card">
-          <h4>Banco de Dados</h4>
-          <div class="items">
-            <span class="tag">SQL Server</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">MongoDB</span>
-            <span class="tag">DynamoDB</span>
-            <span class="tag">Redis</span>
-          </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-database"></i> Banco de Dados</div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-server tool-icon"></i></div><span class="tool-name">SQL Server</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-database tool-icon"></i></div><span class="tool-name">PostgreSQL</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-table tool-icon"></i></div><span class="tool-name">MySQL</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-layer-group tool-icon"></i></div><span class="tool-name">MongoDB</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-bolt tool-icon"></i></div><span class="tool-name">DynamoDB</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-memory tool-icon"></i></div><span class="tool-name">Redis</span></div>
         </div>
-        <div class="skill-card">
-          <h4>Metodologias & IA</h4>
-          <div class="items">
-            <span class="tag">Scrum / Kanban</span>
-            <span class="tag">BDD / Shift Left</span>
-            <span class="tag">Test Pyramid</span>
-            <span class="tag">DevOps / SRE</span>
-            <span class="tag">Cursor IA</span>
-            <span class="tag">Agentes de IA / LLM</span>
-          </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-category-label"><i class="fa-solid fa-people-group"></i> Metodologias & IA</div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-table-columns tool-icon"></i></div><span class="tool-name">Scrum / Kanban</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-arrow-left tool-icon"></i></div><span class="tool-name">BDD / Shift Left</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-layer-group tool-icon"></i></div><span class="tool-name">Test Pyramid</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-infinity tool-icon"></i></div><span class="tool-name">DevOps / SRE</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-wand-magic-sparkles tool-icon"></i></div><span class="tool-name">Cursor IA</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-brain tool-icon"></i></div><span class="tool-name">Agentes de IA / LLM</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-solid fa-robot tool-icon"></i></div><span class="tool-name">Devin</span></div>
+          <div class="tool-card"><div class="tool-orb"><i class="fa-brands fa-github tool-icon"></i></div><span class="tool-name">GitHub Copilot</span></div>
         </div>
       </div>
     </section>
@@ -716,22 +833,25 @@ footer{
     <!-- CERTIFICAÇÕES -->
     <section id="certificacoes" class="section">
       <h2><span class="num">08.</span> Certificações</h2>
-      <div class="project" style="display:flex; gap:22px; align-items:center; flex-wrap:wrap;">
-        <img src="assets/certifications/aws-certified-cloud-practitioner.png" alt="Badge AWS Certified Cloud Practitioner" style="width:110px; height:110px; flex-shrink:0;">
-        <div>
-          <div class="org">Amazon Web Services (AWS)</div>
-          <h3 style="font-family:var(--font-display); font-size:18px; margin-bottom:8px;">AWS Certified Cloud Practitioner</h3>
-          <p style="color:var(--text-soft); font-size:14px;">Certificação oficial validando conhecimento em computação em nuvem, segurança e infraestrutura, servindo como base para a atuação diária com Athena, Glue e S3.</p>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-badge-wrap">
+            <img class="cert-badge-img" src="assets/certifications/aws-certified-cloud-practitioner.png" alt="Badge AWS Certified Cloud Practitioner">
+          </div>
+          <div class="cert-issuer">Amazon Web Services (AWS)</div>
+          <h3 class="cert-title">AWS Certified Cloud Practitioner</h3>
+          <p class="cert-desc">Certificação oficial validando conhecimento em computação em nuvem, segurança e infraestrutura, servindo como base para a atuação diária com Athena, Glue e S3.</p>
+          <span class="cert-pill">AWS Certified</span>
         </div>
-      </div>
 
-      <div class="project" style="display:flex; gap:22px; align-items:center; flex-wrap:wrap;">
-        <img src="assets/certifications/mentoria-testes-software.png" alt="Certificado Mentoria em Testes de Software" width="842" height="595" style="width:180px; height:auto; aspect-ratio:842/595; border:1px solid var(--line); border-radius:6px; flex-shrink:0;">
-        <div>
-          <div class="org">Júlio de Lima Consultoria</div>
-          <h3 style="font-family:var(--font-display); font-size:18px; margin-bottom:8px;">Mentoria em Testes de Software</h3>
-          <p style="color:var(--text-soft); font-size:14px;">Treinamento de 112 horas com aulas online, exercícios práticos e sessões de mentoria ao vivo — concluído em outubro de 2023.</p>
-          <p style="color:var(--text-soft); font-size:14px; margin-top:8px;">Ministrada por Júlio de Lima, instrutor certificado (CTFL, CTAL Test Manager, CTAL Test Automation Engineer) e professor de pós-graduação, com atuação em conferências internacionais como STAREast (EUA) e CLEI (Panamá).</p>
+        <div class="cert-card">
+          <div class="cert-badge-wrap">
+            <img class="cert-badge-img" src="assets/certifications/mentoria-testes-software.png" alt="Certificado Mentoria em Testes de Software" width="842" height="595" style="border:1px solid var(--line); border-radius:6px;">
+          </div>
+          <div class="cert-issuer">Júlio de Lima Consultoria</div>
+          <h3 class="cert-title">Mentoria em Testes de Software</h3>
+          <p class="cert-desc">Domínio em testes manuais e automação, utilizando as ferramentas e linguagens mais valorizadas pelo mercado de tecnologia, além de capacitação técnica no uso de Inteligência Artificial generativa aplicada à qualidade de software para otimização e ganho de produtividade diária.</p>
+          <span class="cert-pill">112h de treinamento</span>
         </div>
       </div>
     </section>
