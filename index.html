@@ -531,6 +531,37 @@ footer{
   border-radius:20px;
   margin-top:auto;
 }
+
+/* ROADMAP — projetos em andamento */
+.roadmap-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.roadmap-card{
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.roadmap-chip{
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
+  font-family: var(--font-mono);
+  font-size:11px;
+  font-weight:600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding:5px 14px;
+  border-radius:20px;
+}
+.roadmap-card h3{
+  font-family: var(--font-display);
+  font-size:17px;
+}
+.roadmap-card p{ color: var(--text-soft); font-size:14.5px; }
+.roadmap-card p strong{ color: var(--text); }
+
 .projeto-card h3{
   font-family: var(--font-display);
   font-size:17px;
@@ -550,13 +581,14 @@ footer{
   <nav class="nav-list" id="navList">
     <a href="#inicio"><span class="n">01</span> Início</a>
     <a href="#sobre"><span class="n">02</span> Sobre</a>
-    <a href="#abordagem"><span class="n">03</span> Abordagem</a>
-    <a href="#experiencia"><span class="n">04</span> Experiência</a>
-    <a href="#projetos"><span class="n">05</span> Projetos</a>
-    <a href="#projetos-anteriores"><span class="n">06</span> Projetos anteriores</a>
-    <a href="#skills"><span class="n">07</span> Ferramentas</a>
+    <a href="#skills"><span class="n">03</span> Ferramentas</a>
+    <a href="#projetos"><span class="n">04</span> Projetos</a>
+    <a href="#abordagem"><span class="n">05</span> Abordagem</a>
+    <a href="#experiencia"><span class="n">06</span> Experiência</a>
+    <a href="#projetos-anteriores"><span class="n">07</span> Projetos anteriores</a>
     <a href="#certificacoes"><span class="n">08</span> Certificações</a>
-    <a href="#contato"><span class="n">09</span> Contato</a>
+    <a href="#roadmap"><span class="n">09</span> Roadmap</a>
+    <a href="#contato"><span class="n">10</span> Contato</a>
   </nav>
 
   <div class="status"><span class="dot"></span> Disponível para novos projetos</div>
@@ -627,107 +659,9 @@ footer{
       </div>
     </section>
 
-    <!-- ABORDAGEM -->
-    <section id="abordagem" class="section">
-      <h2><span class="num">03.</span> Minha abordagem</h2>
-      <div class="skill-card">
-        <h4>Qualidade construída em comunidade</h4>
-        <p style="color:var(--text-soft); font-size:14px; margin-top:6px;">Qualidade não é responsabilidade de uma pessoa ou etapa — é construída em comunidade. Realizo validações em camadas técnicas (Front-end, Back-end/API, nuvem e mensageria, banco de dados e infraestrutura), mas antes de validar o código, questiono a regra de negócio: testar algo que não faz sentido não gera qualidade real. Uso o Test Pyramid para equilibrar esforço entre os tipos de teste, e o Shift Left para antecipar essas discussões desde o início do ciclo.</p>
-      </div>
-    </section>
-
-    <!-- EXPERIÊNCIA -->
-    <section id="experiencia" class="section">
-      <h2><span class="num">04.</span> Experiência</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="when">04/2025 — Presente</div>
-          <div>
-            <h3>Analista de Engenharia de TI Jr.</h3>
-            <div class="org">Itaú Unibanco — Comunidade de Custódia de Ativos PF</div>
-            <p>Implemento e disseminado conceitos de qualidade dentro dos squads da Comunidade de Custódia de Ativos PF — participando de refinamentos, inceptions e discovery, e produtizando automação para testes regressivos, funcionais e integrados.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="when">10/2023 — [mês/ano]</div>
-          <div>
-            <h3>Analista de QA (PJ)</h3>
-            <div class="org">Vidi</div>
-            <p>Qualidade de software ponta a ponta, com foco em automação de testes e melhoria contínua dos processos de teste.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="when">06/2020 — 10/2023</div>
-          <div>
-            <h3>Analista de QA (CLT)</h3>
-            <div class="org">Global Hitss</div>
-            <p>Automação de testes Web, API, Mobile e banco de dados para projetos de clientes como Claro e Bradesco, atuando em times ágeis (Scrum/BDD) e cascata.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETOS -->
-    <section id="projetos" class="section">
-      <h2><span class="num">05.</span> Projetos de qualidade</h2>
-
-      <div class="projetos-grid">
-        <div class="projeto-card">
-          <div class="projeto-icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3>Gate de Qualidade Pré-Mudança</h3>
-          <p>Realizo a mitigação de risco de mudança, com foco em qualidade de repositórios — validando testes de mutação, testes unitários, testes integrados e evidências de teste e plano de rollback antes da submissão ao CAB.</p>
-        </div>
-
-        <div class="projeto-card">
-          <div class="projeto-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
-          <h3>Gestão de Testes Regressivos</h3>
-          <p>Monitoro e atualizo a suíte de testes regressivos que valida os serviços de pós-venda em ambiente de homologação, mantendo os cenários de teste sempre atualizados.</p>
-        </div>
-
-        <div class="projeto-card">
-          <div class="projeto-icon"><i class="fa-solid fa-diagram-project"></i></div>
-          <h3>Referência Técnica em Testes de Integração</h3>
-          <p>Atuo como referência técnica para testes de integração através do TestStack, repositório que centraliza validações de serviços AWS, Redis, Kafka e API — orientando os desenvolvedores na construção e execução desses testes.</p>
-        </div>
-
-        <div class="projeto-card">
-          <div class="projeto-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
-          <h3>Pílula de Conhecimento</h3>
-          <p>Disparo por e-mail, feito a cada sprint, que apresenta de forma leve e descontraída os produtos de qualidade do time.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETOS ANTERIORES -->
-    <section id="projetos-anteriores" class="section">
-      <h2><span class="num">06.</span> Projetos anteriores</h2>
-
-      <div class="project" style="text-align:center;">
-        <div class="project-head" style="justify-content:center; flex-direction:column; align-items:center; gap:10px; margin-bottom:0;">
-          <h3>Claro — Salesforce (via Global Hitss)</h3>
-          <div class="project-tags" style="justify-content:center;">
-            <span class="tag">Selenium</span>
-            <span class="tag">Rest Assured</span>
-            <span class="tag">Cucumber</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project" style="text-align:center;">
-        <div class="project-head" style="justify-content:center; flex-direction:column; align-items:center; gap:10px; margin-bottom:0;">
-          <h3>Bradesco — Uras (via Global Hitss)</h3>
-          <div class="project-tags" style="justify-content:center;">
-            <span class="tag">Java</span>
-            <span class="tag">JUnit</span>
-            <span class="tag">API</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- SKILLS -->
     <section id="skills" class="section">
-      <h2><span class="num">07.</span> Ferramentas & Tecnologias</h2>
+      <h2><span class="num">03.</span> Ferramentas & Tecnologias</h2>
       <div class="tools-category">
         <div class="tools-category-label"><i class="fa-solid fa-code"></i> Linguagens</div>
         <div class="tools-grid">
@@ -830,6 +764,104 @@ footer{
       </div>
     </section>
 
+    <!-- PROJETOS -->
+    <section id="projetos" class="section">
+      <h2><span class="num">04.</span> Projetos de qualidade</h2>
+
+      <div class="projetos-grid">
+        <div class="projeto-card">
+          <div class="projeto-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Gate de Qualidade Pré-Mudança</h3>
+          <p>Realizo a mitigação de risco de mudança, com foco em qualidade de repositórios — validando testes de mutação, testes unitários, testes integrados e evidências de teste e plano de rollback antes da submissão ao CAB.</p>
+        </div>
+
+        <div class="projeto-card">
+          <div class="projeto-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+          <h3>Gestão de Testes Regressivos</h3>
+          <p>Monitoro e atualizo a suíte de testes regressivos que valida os serviços de pós-venda em ambiente de homologação, mantendo os cenários de teste sempre atualizados.</p>
+        </div>
+
+        <div class="projeto-card">
+          <div class="projeto-icon"><i class="fa-solid fa-diagram-project"></i></div>
+          <h3>Referência Técnica em Testes de Integração</h3>
+          <p>Atuo como referência técnica para testes de integração através do TestStack, repositório que centraliza validações de serviços AWS, Redis, Kafka e API — orientando os desenvolvedores na construção e execução desses testes.</p>
+        </div>
+
+        <div class="projeto-card">
+          <div class="projeto-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <h3>Pílula de Conhecimento</h3>
+          <p>Disparo por e-mail, feito a cada sprint, que apresenta de forma leve e descontraída os produtos de qualidade do time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABORDAGEM -->
+    <section id="abordagem" class="section">
+      <h2><span class="num">05.</span> Minha abordagem</h2>
+      <div class="skill-card">
+        <h4>Qualidade construída em comunidade</h4>
+        <p style="color:var(--text-soft); font-size:14px; margin-top:6px;">Qualidade não é responsabilidade de uma pessoa ou etapa — é construída em comunidade. Realizo validações em camadas técnicas (Front-end, Back-end/API, nuvem e mensageria, banco de dados e infraestrutura), mas antes de validar o código, questiono a regra de negócio: testar algo que não faz sentido não gera qualidade real. Uso o Test Pyramid para equilibrar esforço entre os tipos de teste, e o Shift Left para antecipar essas discussões desde o início do ciclo.</p>
+      </div>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section id="experiencia" class="section">
+      <h2><span class="num">06.</span> Experiência</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="when">04/2025 — Presente</div>
+          <div>
+            <h3>Analista de Engenharia de TI Jr.</h3>
+            <div class="org">Itaú Unibanco — Comunidade de Custódia de Ativos PF</div>
+            <p>Implemento e disseminado conceitos de qualidade dentro dos squads da Comunidade de Custódia de Ativos PF — participando de refinamentos, inceptions e discovery, e produtizando automação para testes regressivos, funcionais e integrados.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="when">10/2023 — [mês/ano]</div>
+          <div>
+            <h3>Analista de QA (PJ)</h3>
+            <div class="org">Vidi</div>
+            <p>Qualidade de software ponta a ponta, com foco em automação de testes e melhoria contínua dos processos de teste.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="when">06/2020 — 10/2023</div>
+          <div>
+            <h3>Analista de QA (CLT)</h3>
+            <div class="org">Global Hitss</div>
+            <p>Automação de testes Web, API, Mobile e banco de dados para projetos de clientes como Claro e Bradesco, atuando em times ágeis (Scrum/BDD) e cascata.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETOS ANTERIORES -->
+    <section id="projetos-anteriores" class="section">
+      <h2><span class="num">07.</span> Projetos anteriores</h2>
+
+      <div class="project" style="text-align:center;">
+        <div class="project-head" style="justify-content:center; flex-direction:column; align-items:center; gap:10px; margin-bottom:0;">
+          <h3>Claro — Salesforce (via Global Hitss)</h3>
+          <div class="project-tags" style="justify-content:center;">
+            <span class="tag">Selenium</span>
+            <span class="tag">Rest Assured</span>
+            <span class="tag">Cucumber</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project" style="text-align:center;">
+        <div class="project-head" style="justify-content:center; flex-direction:column; align-items:center; gap:10px; margin-bottom:0;">
+          <h3>Bradesco — Uras (via Global Hitss)</h3>
+          <div class="project-tags" style="justify-content:center;">
+            <span class="tag">Java</span>
+            <span class="tag">JUnit</span>
+            <span class="tag">API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CERTIFICAÇÕES -->
     <section id="certificacoes" class="section">
       <h2><span class="num">08.</span> Certificações</h2>
@@ -856,9 +888,26 @@ footer{
       </div>
     </section>
 
+    <!-- ROADMAP -->
+    <section id="roadmap" class="section">
+      <h2><span class="num">09.</span> Projetos em Andamento & Aprendizado Contínuo</h2>
+      <div class="roadmap-grid">
+        <div class="roadmap-card">
+          <span class="roadmap-chip">Em andamento</span>
+          <h3>Certificação AWS Developer Associate (DVA-C02)</h3>
+          <p>Preparação através de <strong>simulados 100% em português</strong>, cobrindo todo o conteúdo do exame <strong>DVA-C02</strong>.</p>
+        </div>
+        <div class="roadmap-card">
+          <span class="roadmap-chip">Contínuo</span>
+          <h3>Aprofundamento em Python</h3>
+          <p>Estudo da linguagem <strong>Python</strong>, aprofundando a compreensão de sua sintaxe, estruturas e paradigmas para desenvolver com mais autonomia e ampliar meu repertório técnico como desenvolvedor.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTATO -->
     <section id="contato" class="section">
-      <h2><span class="num">09.</span> Contato</h2>
+      <h2><span class="num">10.</span> Contato</h2>
       <div class="contact-box">
         <h3 style="font-family:var(--font-display); font-size:22px;">Vamos conversar?</h3>
         <p>Estou aberto a novas oportunidades — sinta-se à vontade para entrar em contato.</p>
